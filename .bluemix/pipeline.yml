@@ -1,0 +1,28 @@
+---
+stages:
+- name: PREPARE
+  inputs:
+  - type: git
+    branch: master
+    service: ${SAMPLE_REPO}
+  triggers:
+  - type: commit
+  properties:
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text
+  - name: SCRIPT_URL
+    value: ${SCRIPT_URL}
+    type: text
+  - name: BUILD_SCRIPTS
+    value: ${BUILD_SCRIPTS}
+    type: text
+  jobs:
+  - name: Prepare
+    type: builder
+    artifact_dir: ''
+    build_type: customimage
+    docker_image: 'taylorjm/pipeline-job-composer0.19.5'
+    script: |-
+      #!/bin/bash
+      source <(curl -sSL "${SCRIPT_URL}/pipeline-PREPARE.sh")
