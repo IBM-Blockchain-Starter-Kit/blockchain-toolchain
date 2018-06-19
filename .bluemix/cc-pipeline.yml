@@ -20,14 +20,11 @@ stages:
     script: |-
       #!/bin/bash
       source <(curl -sSL "${SCRIPT_URL}/prepare.sh")
-      
-      . ${SCRIPT_DIR}install-go.sh
-      . ${SCRIPT_DIR}download-fabric.sh
 - name: BUILD
   inputs:
   - type: job
     stage: PREPARE
-    job: Build Go Chaincode
+    job: Prepare
   triggers:
   - type: stage
   jobs:
