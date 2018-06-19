@@ -1,0 +1,92 @@
+---
+stages:
+- name: BUILD
+  inputs:
+  - type: git
+    branch: master
+    service: ${CC_REPO}
+  triggers:
+  - type: commit
+  jobs:
+  - name: Build Go Chaincode
+    type: builder
+    script: |-
+      #!/bin/bash -x
+      # script defined in chaincode project
+      . ./pipeline/build.sh
+- name: UNITEST
+  inputs:
+  - type: job
+    stage: BUILD
+    job: Build Go Chaincode
+  triggers:
+  - type: stage
+  jobs:
+  - name: Unit Tests
+    type: tester
+    enable_tests: false
+    script: |-
+      #!/bin/bash -x
+      # script defined in chaincode project
+      . ./pipeline/unitest.sh
+- name: DEV-DEPLOY
+  inputs:
+  - type: job
+    stage: BUILD
+    job: Build Go Chaincode
+  triggers:
+  - type: stage
+  properties:
+  - name: UTILS_REPO_OWNER
+    value: ${UTILS_REPO_OWNER}
+    type: text
+  - name: UTILS_REPO_NAME
+    value: ${UTILS_REPO_NAME}
+    type: text
+  - name: ENV_REPO_OWNER
+    value: ${ENV_REPO_OWNER}
+    type: text
+  - name: ENV_REPO_NAME
+    value: ${ENV_REPO_NAME}
+    type: text
+  - name: BX_GIT_PAT
+    value: ${BX_GIT_PAT}
+    type: text
+  jobs:
+  - name: Chaincode Deploy
+    type: builder
+    script: |-
+      #!/bin/bash -x
+      # script defined in chaincode project
+      . ./pipeline/deploy-enterprise.sh  dev
+- name: PROD-DEPLOY
+  inputs:
+  - type: job
+    stage: BUILD
+    job: Build Go Chaincode
+  triggers:
+  - type: stage
+  properties:
+  - name: UTILS_REPO_OWNER
+    value: ${UTILS_REPO_OWNER}
+    type: text
+  - name: UTILS_REPO_NAME
+    value: ${UTILS_REPO_NAME}
+    type: text
+  - name: ENV_REPO_OWNER
+    value: ${ENV_REPO_OWNER}
+    type: text
+  - name: ENV_REPO_NAME
+    value: ${ENV_REPO_NAME}
+    type: text
+  - name: BX_GIT_PAT
+    value: ${BX_GIT_PAT}
+    type: text
+  jobs:
+  - name: Chaincode Deploy
+    type: builder
+    script: |-
+      #!/bin/bash -x
+      # script defined in chaincode project
+      . ./pipeline/deploy-enterprise.sh  prod
+
