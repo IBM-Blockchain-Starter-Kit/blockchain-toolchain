@@ -33,7 +33,7 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      . ${SCRIPT_DIR}build.sh
+      source ./scripts/build.sh
 - name: UNITEST
   inputs:
   - type: job
@@ -48,7 +48,7 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      . ${SCRIPT_DIR}unitest.sh
+      source ./scripts/unitest.sh
 - name: DEV-DEPLOY
   inputs:
   - type: job
@@ -78,7 +78,7 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      . ${SCRIPT_DIR}deploy-enterprise.sh  dev
+      source ./scripts/deploy-enterprise.sh  dev
 - name: PROD-DEPLOY
   inputs:
   - type: job
@@ -108,5 +108,5 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      . ${SCRIPT_DIR}deploy-enterprise.sh  prod
+      source ./scripts/deploy-enterprise.sh  prod
 
