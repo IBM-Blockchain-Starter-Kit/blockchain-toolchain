@@ -15,7 +15,7 @@ template:
     git url: >-
       [https://github.com/yorhodes/blockchain-toolchain](https://github.com/yorhodes/blockchain-toolchain)
     git branch: >-
-      [fabric](https://github.com/yorhodes/blockchain-toolchain/tree/fabric)
+      [master](https://github.com/yorhodes/blockchain-toolchain/tree/master)
 toolchain:
   name: 'XXXXX-mvp'
   template:
