@@ -13,9 +13,9 @@ template:
     - chaincode-build
   info:
     git url: >-
-      [https://github.ibm.com/BlockchainLabs/mvp-toolchain](https://github.ibm.com/BlockchainLabs/mvp-toolchain)
+      [https://github.com/yorhodes/blockchain-toolchain](https://github.com/yorhodes/blockchain-toolchain)
     git branch: >-
-      [master](https://github.ibm.com/BlockchainLabs/mvp-toolchain/tree/master)
+      [fabric](https://github.com/yorhodes/blockchain-toolchain/tree/fabric)
 toolchain:
   name: 'XXXXX-mvp'
   template:
@@ -66,6 +66,9 @@ services:
           PROD_SPACE_NAME: '{{form.pipeline.parameters.prod-space}}'
           PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
           PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
+          SCRIPT_DIR: './scripts/'
+          SCRIPT_URL: 'https://raw.githubusercontent.com/yorhodes/build-lib/fabric/pipeline'
+          SAMPLE_REPO: sample-repo
         execute: true
 form:
   pipeline:

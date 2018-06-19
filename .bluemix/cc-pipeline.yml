@@ -1,19 +1,42 @@
 ---
 stages:
-- name: BUILD
+- name: PREPARE
   inputs:
   - type: git
     branch: master
     service: ${CC_REPO}
   triggers:
   - type: commit
+  properties:
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text
+  - name: SCRIPT_URL
+    value: ${SCRIPT_URL}
+    type: text
+  jobs:
+  - name: Prepare
+    type: builder
+    script: |-
+      #!/bin/bash
+      source <(curl -sSL "${SCRIPT_URL}/prepare.sh")
+      
+      . ${SCRIPT_DIR}install-go.sh
+      . ${SCRIPT_DIR}download-fabric.sh
+- name: BUILD
+  inputs:
+  - type: job
+    stage: PREPARE
+    job: Build Go Chaincode
+  triggers:
+  - type: stage
   jobs:
   - name: Build Go Chaincode
     type: builder
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      . ./pipeline/build.sh
+      . ${SCRIPT_DIR}build.sh
 - name: UNITEST
   inputs:
   - type: job
@@ -28,7 +51,7 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      . ./pipeline/unitest.sh
+      . ${SCRIPT_DIR}unitest.sh
 - name: DEV-DEPLOY
   inputs:
   - type: job
@@ -58,7 +81,7 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      . ./pipeline/deploy-enterprise.sh  dev
+      . ${SCRIPT_DIR}deploy-enterprise.sh  dev
 - name: PROD-DEPLOY
   inputs:
   - type: job
@@ -88,5 +111,5 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      . ./pipeline/deploy-enterprise.sh  prod
+      . ${SCRIPT_DIR}deploy-enterprise.sh  prod
 
