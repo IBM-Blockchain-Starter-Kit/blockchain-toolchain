@@ -30,22 +30,6 @@ services:
       type: clone
       has_issues: true
       enable_traceability: true
-  env-repo:
-    service_id: hostedgit
-    parameters:
-      repo_name: '{{toolchain.name}}-env-repo'
-      repo_url: 'https://75528367f25ac442ad25591868b352633c04c45c@github.ibm.com/BlockchainLabs/env-bootstrap.git'
-      type: clone
-      has_issues: true
-      enable_traceability: true
-  utils-repo:
-    service_id: hostedgit
-    parameters:
-      repo_name: '{{toolchain.name}}-utils-repo'
-      repo_url: 'https://75528367f25ac442ad25591868b352633c04c45c@github.ibm.com/BlockchainLabs/fabric-cli.git'
-      type: clone
-      has_issues: true
-      enable_traceability: true
   chaincode-build:
     service_id: pipeline
     parameters:
