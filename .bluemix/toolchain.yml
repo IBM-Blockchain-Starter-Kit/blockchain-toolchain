@@ -17,7 +17,7 @@ template:
     git branch: >-
       [master](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain/tree/master)
 toolchain:
-  name: '{{sampleName}}-blockchain-{{timestamp}}'
+  name: 'blockchain-{{timestamp}}'
   template:
     getting_started:
       $ref: "#/messages/template.gettingStarted"
@@ -25,8 +25,8 @@ services:
   sample-repo:
     service_id: githubpublic
     parameters:
-      repo_name: '{{form.githubpublic.parameters.sample-repo_name}}'
-      repo_url: '{{form.githubpublic.parameters.sample-repo_url}}'
+      repo_name: '{{toolchain.name}}'
+      repo_url: '{{sampleRepo}}'
       type: clone
       has_issues: true
       enable_traceability: true
@@ -42,26 +42,26 @@ services:
           $text: pipeline.yml
         env:
           SCRIPT_DIR: './scripts/'
-          SCRIPT_URL: 'https://raw.githubusercontent.com/hyperledger-composer-samples/lib/master/scripts'
-          BUILD_SCRIPTS: 'pipeline-COMMON.sh pipeline-DEPLOY.sh'
+          SCRIPT_URL: 'https://raw.githubusercontent.com/IBM-Blockchain-Starter-Kit/build-lib/master/scripts'
+          BUILD_SCRIPTS: 'pipeline-BLOCKCHAIN.sh pipeline-BUILD.sh pipeline-CLOUDANT.sh pipeline-COMMON.sh pipeline-DEPLOY.sh'
           SAMPLE_REPO: sample-repo
+          BLOCKCHAIN_SERVICE_INSTANCE: '{{form.pipeline.parameters.blockchain-service-instance}}'
+          CLOUDANT_SERVICE_INSTANCE: '{{form.pipeline.parameters.blockchain-service-instance}}'
+          APP_NAME: '{{form.pipeline.parameters.deploy-app-name}}'
+          REGION_ID: '{{form.pipeline.parameters.deploy-region}}'
+          ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
+          SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
         execute: true
   webide:
     service_id: orion
 form:
-  githubpublic:
-    parameters:
-      sample-repo_name: '{{toolchain.name}}'
-      sample-repo_url: '{{sampleRepo}}'
-    schema:
-      $ref: github.json
   pipeline:
     parameters:
       blockchain-service-instance: '{{sampleName}} Blockchain-{{timestamp}}'
       cloudant-service-instance: '{{sampleName}} Wallet-{{timestamp}}'
-      prod-app-name: '{{services.sample-repo.parameters.repo_name}}'
-      prod-region: '{{region}}'
-      prod-organization: '{{organization}}'
-      prod-space: '{{space}}'
+      deploy-app-name: '{{services.sample-repo.parameters.repo_name}}'
+      deploy-region: '{{region}}'
+      deploy-organization: '{{organization}}'
+      deploy-space: '{{space}}'
     schema:
       $ref: deploy.json
