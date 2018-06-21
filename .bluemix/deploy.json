@@ -28,27 +28,27 @@
             "type": "string",
             "pattern": "^.{1,50}$"
         },
-        "prod-app-name": {
+        "deploy-app-name": {
             "description": {
                 "$ref": "#/messages/deploy.appDescription"
             },
             "type": "string",
             "pattern": "\\S"
         },
-        "prod-region": {
+        "deploy-region": {
             "description": {
                 "$ref": "#/messages/deploy.regionDescription"
             },
             "type": "string",
             "pattern": "^(ibm:yp:us-south|ibm:ys1:us-south)$"
         },
-        "prod-organization": {
+        "deploy-organization": {
             "description": {
                 "$ref": "#/messages/deploy.organizationDescription"
             },
             "type": "string"
         },
-        "prod-space": {
+        "deploy-space": {
             "description": {
                 "$ref": "#/messages/deploy.spaceDescription"
             },
@@ -58,10 +58,10 @@
     "required": [
         "blockchain-service-instance",
         "cloudant-service-instance",
-        "prod-app-name",
-        "prod-region",
-        "prod-organization",
-        "prod-space"
+        "deploy-app-name",
+        "deploy-region",
+        "deploy-organization",
+        "deploy-space"
     ],
     "form": [
         {
@@ -90,7 +90,7 @@
             "title": {
                 "$ref": "#/messages/deploy.appName"
             },
-            "key": "prod-app-name"
+            "key": "deploy-app-name"
         },
         {
             "type": "table",
@@ -117,15 +117,15 @@
                 },
                 {
                     "type": "select",
-                    "key": "prod-region"
+                    "key": "deploy-region"
                 },
                 {
                     "type": "select",
-                    "key": "prod-organization"
+                    "key": "deploy-organization"
                 },
                 {
                     "type": "select",
-                    "key": "prod-space",
+                    "key": "deploy-space",
                     "readonly": false
                 }
             ]
