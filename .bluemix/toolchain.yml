@@ -1,0 +1,60 @@
+version: '2'
+messages:
+  $i18n: locales.yml
+template:
+  name:
+    $ref: "#/messages/template.name"
+  description:
+    $ref: "#/messages/template.description"
+  header: '![](toolchain.svg?localize)'
+  icon: icon.svg
+  required:
+    - chaincode-repo
+    - chaincode-build
+  info:
+    git url: >-
+      [https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain)
+    git branch: >-
+      [chaincode](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain/tree/chaincode)
+toolchain:
+  name: 'XXXXX-mvp'
+  template:
+    getting_started:
+      $ref: "#/messages/template.gettingStarted"
+services:
+  chaincode-repo:
+    service_id: hostedgit
+    parameters:
+      repo_name: '{{toolchain.name}}-cc-repo'
+      repo_url: 'https://github.com/IBM-Blockchain-Starter-Kit/chaincode-bootstrap.git'
+      type: clone
+      has_issues: true
+      enable_traceability: true
+  chaincode-build:
+    service_id: pipeline
+    parameters:
+      services:
+        - chaincode-repo
+      name: '{{toolchain.name}}-cc-pipeline'
+      ui-pipeline: true
+      configuration:
+        content:
+          $text: cc-pipeline.yml
+        env:
+          CC_REPO: chaincode-repo
+          BX_GIT_PAT: '{{form.pipeline.parameters.bx-git-pat}}'
+          UTILS_REPO_OWNER: '{{form.utils-repo.parameters.owner_id}}'
+          UTILS_REPO_NAME: '{{form.utils-repo.parameters.repo_name}}'
+          ENV_REPO_OWNER: '{{form.env-repo.parameters.owner_id}}'
+          ENV_REPO_NAME: '{{form.env-repo.parameters.repo_name}}'
+          PROD_SPACE_NAME: '{{form.pipeline.parameters.prod-space}}'
+          PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
+          PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
+          SCRIPT_DIR: './scripts/'
+          SCRIPT_URL: 'https://raw.githubusercontent.com/IBM-Blockchain-Starter-Kit/build-lib/master/scripts/chaincode-pipeline'
+          SAMPLE_REPO: sample-repo
+        execute: true
+form:
+  pipeline:
+    schema:
+      $ref: deploy.json
