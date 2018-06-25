@@ -19,7 +19,17 @@ stages:
     type: builder
     script: |-
       #!/bin/bash
-      source <(curl -sSL "${SCRIPT_URL}/prepare.sh")
+      source <(curl -sSL "${SCRIPT_URL}/pipeline-PREPARE.sh")
+
+      fetch_scripts "chaincode-pipeline/env.sh
+      chaincode-pipeline/deploy-enterprise.sh
+      chaincode-pipeline/install-go.sh
+      chaincode-pipeline/download-fabric.sh
+      chaincode-pipeline/build.sh
+      chaincode-pipeline/unitest.sh"
+
+      run_scripts "chaincode-pipeline/install-go.sh
+      chaincode-pipeline/download-fabric.sh"
 - name: BUILD
   inputs:
   - type: job
