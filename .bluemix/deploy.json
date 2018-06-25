@@ -1,0 +1,49 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "messages": {
+        "$i18n": "locales.yml"
+    },
+    "title": {
+        "$ref": "#/messages/deploy.title"
+    },
+    "description": {
+        "$ref": "#/messages/deploy.description"
+    },
+    "longDescription": {
+        "$ref": "#/messages/deploy.longDescription"
+    },
+    "type": "object",
+    "properties": {
+        "ibm-git-key": {
+            "description": "#/messages/ibm.gitKeyDescription",
+            "type": "string"
+        },
+        "bx-git-key": {
+            "description": "#/messages/bluemix.gitKeyDescription",
+            "type": "string"
+        }
+    },
+    "required": [
+        "bx-git-pat"
+    ],
+    "form": [
+        {
+            "type": "validator",
+            "url": "#/messages/bluemix.validatorUrl"
+        }, 
+        {
+            "type": "label",
+            "title": "#/messages/bluemix.patSection"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": "#/messages/bluemix.patDescription",
+            "key": "bx-git-pat"
+        },
+        {
+            "type": "label",
+            "title": "#/messages/bluemix.patSection"
+        }
+    ]
+}
