@@ -15,11 +15,11 @@
     "type": "object",
     "properties": {
         "ibm-git-key": {
-            "description": "Personal access token to access IBM internal git repos",
+            "description": "#/messages/ibm.gitKeyDescription",
             "type": "string"
         },
         "bx-git-key": {
-            "description": "Personal access token to access the Bluemix git repos",
+            "description": "#/messages/bluemix.gitKeyDescription",
             "type": "string"
         }
     },
@@ -29,21 +29,21 @@
     "form": [
         {
             "type": "validator",
-            "url": "/devops/setup/bm-helper/helper.html"
+            "url": "#/messages/bluemix.validatorUrl"
         }, 
         {
             "type": "label",
-            "title": "------------------------------------------------------"
+            "title": "#/messages/bluemix.patSection"
         },
         {
             "type": "text",
             "readonly": false,
-            "title": "Bluemix git personal access token",
+            "title": "#/messages/bluemix.patDescription",
             "key": "bx-git-pat"
         },
         {
             "type": "label",
-            "title": "------------------------------------------------------"
+            "title": "#/messages/bluemix.patSection"
         }
     ]
 }
