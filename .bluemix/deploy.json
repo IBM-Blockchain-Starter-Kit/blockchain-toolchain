@@ -15,11 +15,15 @@
     "type": "object",
     "properties": {
         "ibm-git-key": {
-            "description": "#/messages/ibm.gitKeyDescription",
+            "description": {
+                "$ref": "#/messages/ibm.gitKeyDescription"
+            },
             "type": "string"
         },
         "bx-git-key": {
-            "description": "#/messages/bluemix.gitKeyDescription",
+            "description": {
+                "$ref": "#/messages/bluemix.gitKeyDescription"
+            },
             "type": "string"
         }
     },
@@ -29,21 +33,29 @@
     "form": [
         {
             "type": "validator",
-            "url": "#/messages/bluemix.validatorUrl"
+            "url": {
+                "$ref": "#/messages/bluemix.validatorUrl"
+            }
         }, 
         {
             "type": "label",
-            "title": "#/messages/bluemix.patSection"
+            "title": {
+                "$ref": "#/messages/bluemix.patSection"
+            }
         },
         {
             "type": "text",
             "readonly": false,
-            "title": "#/messages/bluemix.patDescription",
+            "title": {
+                "$ref": "#/messages/bluemix.patDescription"
+            },
             "key": "bx-git-pat"
         },
         {
             "type": "label",
-            "title": "#/messages/bluemix.patSection"
+            "title": {
+                "$ref": "#/messages/bluemix.patSection"
+            }
         }
     ]
 }
