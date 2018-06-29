@@ -48,6 +48,9 @@ stages:
   triggers:
   - type: stage
   properties:
+  - name: REGION_ID
+    value: ${REGION_ID}
+    type: text
   - name: SCRIPT_DIR
     value: ${SCRIPT_DIR}
     type: text
