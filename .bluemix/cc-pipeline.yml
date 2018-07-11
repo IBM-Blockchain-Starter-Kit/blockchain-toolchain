@@ -20,27 +20,27 @@ stages:
     script: |-
       #!/bin/bash
       source <(curl -sSL "${SCRIPT_URL}/prepare-unstable.sh")
-# - name: BUILD
-#   inputs:
-#   - type: job
-#     stage: PREPARE
-#     job: Prepare
-#   triggers:
-#   - type: stage
-#   properties:
-#   - name: PLATFORM
-#     value: ${PLATFORM}
-#     type: text
-#   - name: SCRIPT_DIR
-#     value: ${SCRIPT_DIR}
-#     type: text 
-#   jobs:
-#   - name: Build Chaincode
-#     type: builder
-#     script: |-
-#       #!/bin/bash -x
-#       # script defined in chaincode project
-#       #source "${SCRIPT_DIR}/router.sh build ${PLATFORM}"
+- name: BUILD
+  inputs:
+  - type: job
+    stage: PREPARE
+    job: Prepare
+  triggers:
+  - type: stage
+  properties:
+  - name: PLATFORM
+    value: ${PLATFORM}
+    type: text
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text 
+  jobs:
+  - name: Build Chaincode
+    type: builder
+    script: |-
+      #!/bin/bash -x
+      # script defined in chaincode project
+      #source "${SCRIPT_DIR}/router.sh build ${PLATFORM}"
 # - name: TEST
 #   inputs:
 #   - type: job
