@@ -61,39 +61,39 @@ stages:
     script: |-
       #!/bin/bash -x
       source ${SCRIPT_DIR}/router.sh test ${PLATFORM}
-# - name: DEPLOY
-#   inputs:
-#   - type: job
-#     stage: BUILD
-#     job: Build Chaincode
-#   triggers:
-#   - type: stage
-#   properties:
-#   - name: PLATFORM
-#     value: ${PLATFORM}
-#     type: text
-#   - name: SCRIPT_DIR
-#     value: ${SCRIPT_DIR}
-#     type: text 
-#   - name: BLOCKCHAIN_SERVICE_INSTANCE
-#     value: ${BLOCKCHAIN_SERVICE_INSTANCE}
-#     type: text 
-#   - name: CLOUDANT_SERVICE_INSTANCE
-#     value: ${CLOUDANT_SERVICE_INSTANCE}
-#     type: text 
-#   - name: REGION_ID
-#     value: ${REGION_ID}
-#     type: text 
-#   jobs:
-#   - name: Chaincode Deploy
-#     type: deployer
-#     target:
-#      region_id: ${REGION_ID}
-#      organization: ${ORG_NAME}
-#      space: ${SPACE_NAME}
-#      application: ${APP_NAME}
-#     script: |-
-#       #!/bin/bash -x
-#       #source ${SCRIPT_DIR}/router.sh deploy ${PLATFORM}
+- name: DEPLOY
+  inputs:
+  - type: job
+    stage: BUILD
+    job: Build Chaincode
+  triggers:
+  - type: stage
+  properties:
+  - name: PLATFORM
+    value: ${PLATFORM}
+    type: text
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text 
+  - name: BLOCKCHAIN_SERVICE_INSTANCE
+    value: ${BLOCKCHAIN_SERVICE_INSTANCE}
+    type: text 
+  - name: CLOUDANT_SERVICE_INSTANCE
+    value: ${CLOUDANT_SERVICE_INSTANCE}
+    type: text 
+  - name: REGION_ID
+    value: ${REGION_ID}
+    type: text 
+  jobs:
+  - name: Chaincode Deploy
+    type: deployer
+    target:
+     region_id: ${REGION_ID}
+     organization: ${ORG_NAME}
+     space: ${SPACE_NAME}
+     application: ${APP_NAME}
+    script: |-
+      #!/bin/bash -x
+      #source ${SCRIPT_DIR}/router.sh deploy ${PLATFORM}
     
 # - 
