@@ -49,7 +49,7 @@ services:
           REGION_ID: '{{form.pipeline.parameters.deploy-region}}'
           ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
           SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
-          SCRIPT_DIR: './scripts/'
+          SCRIPT_DIR: './scripts'
           SCRIPT_URL: 'https://raw.githubusercontent.com/IBM-Blockchain-Starter-Kit/build-lib/master/src'
         execute: true
 form:
