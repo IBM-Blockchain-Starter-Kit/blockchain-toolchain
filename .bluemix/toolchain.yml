@@ -13,9 +13,9 @@ template:
     - chaincode-build
   info:
     git url: >-
-      [https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain)
+      [https://github.com/mayarobin/blockchain-toolchain](https://github.com/mayarobin/blockchain-toolchain)
     git branch: >-
-      [chaincode](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain/tree/chaincode)
+      [chaincode](https://github.com/mayarobin/blockchain-toolchain/tree/platformRouter)
 toolchain:
   name: 'XXXXX-mvp'
   template:
@@ -41,6 +41,7 @@ services:
         content:
           $text: cc-pipeline.yml
         env:
+          PLATFORM: {{PLATFORM}}
           CC_REPO: chaincode-repo
           BX_GIT_PAT: '{{form.pipeline.parameters.bx-git-pat}}'
           UTILS_REPO_OWNER: '{{form.utils-repo.parameters.owner_id}}'
@@ -51,7 +52,7 @@ services:
           PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
           PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
           SCRIPT_DIR: './scripts/'
-          SCRIPT_URL: 'https://raw.githubusercontent.com/IBM-Blockchain-Starter-Kit/build-lib/master/scripts/chaincode-pipeline'
+          SCRIPT_URL: 'https://raw.githubusercontent.com/IBM-Blockchain-Starter-Kit/build-lib/master/src'
           SAMPLE_REPO: sample-repo
         execute: true
 form:
