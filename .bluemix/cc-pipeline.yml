@@ -35,7 +35,7 @@ stages:
     value: ${SCRIPT_DIR}
     type: text 
   jobs:
-  - name: Build ${PLATFORM} Chaincode
+  - name: Build Chaincode
     type: builder
     script: |-
       #!/bin/bash -x
@@ -45,7 +45,7 @@ stages:
   inputs:
   - type: job
     stage: BUILD
-    job: Build Go Chaincode
+    job: Build Chaincode
   triggers:
   - type: stage
   properties:
@@ -66,7 +66,7 @@ stages:
   inputs:
   - type: job
     stage: BUILD
-    job: Build ${PLATFORM} Chaincode
+    job: Build Chaincode
   triggers:
   - type: stage
   properties:

@@ -14,48 +14,121 @@
     },
     "type": "object",
     "properties": {
-        "ibm-git-key": {
+        "blockchain-service-instance": {
             "description": {
-                "$ref": "#/messages/ibm.gitKeyDescription"
+                "$ref": "#/messages/deploy.blockchainServiceDescription"
+            },
+            "type": "string",
+            "pattern": "^.{1,50}$"
+        },
+        "cloudant-service-instance": {
+            "description": {
+                "$ref": "#/messages/deploy.cloudantServiceDescription"
+            },
+            "type": "string",
+            "pattern": "^.{1,50}$"
+        },
+        "deploy-app-name": {
+            "description": {
+                "$ref": "#/messages/deploy.appDescription"
+            },
+            "type": "string",
+            "pattern": "\\S"
+        },
+        "deploy-region": {
+            "description": {
+                "$ref": "#/messages/deploy.regionDescription"
+            },
+            "type": "string",
+            "pattern": "^(ibm:yp:us-south|ibm:ys1:us-south)$"
+        },
+        "deploy-organization": {
+            "description": {
+                "$ref": "#/messages/deploy.organizationDescription"
             },
             "type": "string"
         },
-        "bx-git-key": {
+        "deploy-space": {
             "description": {
-                "$ref": "#/messages/bluemix.gitKeyDescription"
+                "$ref": "#/messages/deploy.spaceDescription"
             },
             "type": "string"
         }
     },
     "required": [
-        "bx-git-pat"
+        "blockchain-service-instance",
+        "cloudant-service-instance",
+        "deploy-app-name",
+        "deploy-region",
+        "deploy-organization",
+        "deploy-space"
     ],
     "form": [
         {
             "type": "validator",
-            "url": {
-                "$ref": "#/messages/bluemix.validatorUrl"
-            }
-        }, 
-        {
-            "type": "label",
-            "title": {
-                "$ref": "#/messages/bluemix.patSection"
-            }
+            "url": "/devops/setup/bm-helper/helper.html"
         },
         {
             "type": "text",
             "readonly": false,
             "title": {
-                "$ref": "#/messages/bluemix.patDescription"
+                "$ref": "#/messages/deploy.blockchainServiceName"
             },
-            "key": "bx-git-pat"
+            "key": "blockchain-service-instance"
         },
         {
-            "type": "label",
+            "type": "text",
+            "readonly": false,
             "title": {
-                "$ref": "#/messages/bluemix.patSection"
-            }
+                "$ref": "#/messages/deploy.cloudantServiceName"
+            },
+            "key": "cloudant-service-instance"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+                "$ref": "#/messages/deploy.appName"
+            },
+            "key": "deploy-app-name"
+        },
+        {
+            "type": "table",
+            "columnCount": 3,
+            "widths": ["33%", "33%", "33%"],
+            "items": [
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/deploy.regionName"
+                    }
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/deploy.organizationName"
+                    }
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/deploy.spaceName"
+                    }
+                },
+                {
+                    "type": "select",
+                    "key": "deploy-region"
+                },
+                {
+                    "type": "select",
+                    "key": "deploy-organization"
+                },
+                {
+                    "type": "select",
+                    "key": "deploy-space",
+                    "readonly": false
+                }
+            ]
         }
     ]
 }
