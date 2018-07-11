@@ -17,7 +17,7 @@ template:
     git branch: >-
       [chaincode](https://github.com/mayarobin/blockchain-toolchain/tree/platformRouter)
 toolchain:
-  name: 'XXXXX-mvp'
+  name: 'Blockchain-{{timestamp}}-mvp'
   template:
     getting_started:
       $ref: "#/messages/template.gettingStarted"
@@ -55,9 +55,9 @@ services:
 form:
   pipeline:
     parameters:
-      blockchain-service-instance: '{{sampleName}} Blockchain-{{timestamp}}'
-      cloudant-service-instance: '{{sampleName}} Wallet-{{timestamp}}'
-      deploy-app-name: '{{services.sample-repo.parameters.repo_name}}'
+      blockchain-service-instance: 'Blockchain-{{timestamp}}'
+      cloudant-service-instance: 'Wallet-{{timestamp}}'
+      deploy-app-name: '{{services.chaincode-repo.parameters.repo_name}}'
       deploy-region: '{{region}}'
       deploy-organization: '{{organization}}'
       deploy-space: '{{space}}'
