@@ -8,6 +8,9 @@ stages:
   triggers:
   - type: commit
   properties:
+  - name: PLATFORM
+    value: ${PLATFORM}
+    type: text
   - name: SCRIPT_DIR
     value: ${SCRIPT_DIR}
     type: text
@@ -40,6 +43,7 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
+
       #source "${SCRIPT_DIR}/router.sh build ${PLATFORM}"
 # - name: TEST
 #   inputs:
