@@ -43,14 +43,23 @@ services:
         env:
           PLATFORM: {{PLATFORM}}
           CC_REPO: chaincode-repo
-          BX_GIT_PAT: '{{form.pipeline.parameters.bx-git-pat}}'
-          PROD_SPACE_NAME: '{{form.pipeline.parameters.prod-space}}'
-          PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
-          PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
+          BLOCKCHAIN_SERVICE_INSTANCE: '{{form.pipeline.parameters.blockchain-service-instance}}'
+          CLOUDANT_SERVICE_INSTANCE: '{{form.pipeline.parameters.cloudant-service-instance}}'
+          APP_NAME: '{{form.pipeline.parameters.deploy-app-name}}'
+          REGION_ID: '{{form.pipeline.parameters.deploy-region}}'
+          ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
+          SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
           SCRIPT_DIR: './scripts/'
           SCRIPT_URL: 'https://raw.githubusercontent.com/IBM-Blockchain-Starter-Kit/build-lib/master/src'
         execute: true
 form:
+  parameters:
+      blockchain-service-instance: '{{sampleName}} Blockchain-{{timestamp}}'
+      cloudant-service-instance: '{{sampleName}} Wallet-{{timestamp}}'
+      deploy-app-name: '{{services.sample-repo.parameters.repo_name}}'
+      deploy-region: '{{region}}'
+      deploy-organization: '{{organization}}'
+      deploy-space: '{{space}}'
   pipeline:
     schema:
       $ref: deploy.json
