@@ -2,9 +2,9 @@
 
 The scripts defined in this project create a toolchain that automates development, testing and deployment of chaincode components used during an MVP.  
 
-|[![Deploy To Bluemix](https://console.ng.bluemix.net/devops/graphics/create_toolchain_button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/mayarobin/blockchain-toolchain&branch=platformRouter&PLATFORM=composer)| Create a Composer toolchain|   
+|[![Deploy To Bluemix](https://console.ng.bluemix.net/devops/graphics/create_toolchain_button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/mayarobin/blockchain-toolchain&branch=platformRouter&platform=composer)| Create a Composer toolchain|   
 |---------|----------|
-|[![Deploy To Bluemix](https://console.ng.bluemix.net/devops/graphics/create_toolchain_button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/mayarobin/blockchain-toolchain&branch=platformRouter&PLATFORM=go)| Create a Go toolchain|
+|[![Deploy To Bluemix](https://console.ng.bluemix.net/devops/graphics/create_toolchain_button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/mayarobin/blockchain-toolchain&branch=platformRouter&platform=go)| Create a Go toolchain|
 
 # Pre-Deployment Requisites 
 

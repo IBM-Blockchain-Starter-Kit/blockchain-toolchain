@@ -41,7 +41,7 @@ services:
         content:
           $text: cc-pipeline.yml
         env:
-          PLATFORM: {{PLATFORM}}
+          PLATFORM: '{{platform}}'
           CC_REPO: chaincode-repo
           BLOCKCHAIN_SERVICE_INSTANCE: '{{form.pipeline.parameters.blockchain-service-instance}}'
           CLOUDANT_SERVICE_INSTANCE: '{{form.pipeline.parameters.cloudant-service-instance}}'
