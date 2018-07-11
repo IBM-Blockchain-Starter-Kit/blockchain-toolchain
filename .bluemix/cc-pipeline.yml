@@ -40,7 +40,7 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      source "${SCRIPT_DIR}/router.sh build ${PLATFORM}"
+      source "${SCRIPT_DIR}/router.sh" build "${PLATFORM}"
 - name: TEST
   inputs:
   - type: job
@@ -60,7 +60,7 @@ stages:
     type: tester
     script: |-
       #!/bin/bash -x
-      source ${SCRIPT_DIR}/router.sh test ${PLATFORM}
+      source "${SCRIPT_DIR}/router.sh" test "${PLATFORM}"
 - name: DEPLOY
   inputs:
   - type: job
@@ -94,6 +94,6 @@ stages:
      application: ${APP_NAME}
     script: |-
       #!/bin/bash -x
-      #source ${SCRIPT_DIR}/router.sh deploy ${PLATFORM}
+      source "${SCRIPT_DIR}/router.sh" deploy "${PLATFORM}"
     
-# - 
+

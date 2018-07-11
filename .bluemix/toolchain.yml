@@ -13,9 +13,9 @@ template:
     - chaincode-build
   info:
     git url: >-
-      [https://github.com/mayarobin/blockchain-toolchain](https://github.com/mayarobin/blockchain-toolchain)
+      [https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain)
     git branch: >-
-      [chaincode](https://github.com/mayarobin/blockchain-toolchain/tree/platformRouter)
+      [chaincode](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain/tree/chaincode)
 toolchain:
   name: 'Blockchain-{{timestamp}}-mvp'
   template:
