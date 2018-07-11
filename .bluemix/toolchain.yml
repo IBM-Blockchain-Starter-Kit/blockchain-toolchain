@@ -53,13 +53,13 @@ services:
           SCRIPT_URL: 'https://raw.githubusercontent.com/IBM-Blockchain-Starter-Kit/build-lib/master/src'
         execute: true
 form:
-  parameters:
+  pipeline:
+    parameters:
       blockchain-service-instance: '{{sampleName}} Blockchain-{{timestamp}}'
       cloudant-service-instance: '{{sampleName}} Wallet-{{timestamp}}'
       deploy-app-name: '{{services.sample-repo.parameters.repo_name}}'
       deploy-region: '{{region}}'
       deploy-organization: '{{organization}}'
       deploy-space: '{{space}}'
-  pipeline:
     schema:
       $ref: deploy.json
