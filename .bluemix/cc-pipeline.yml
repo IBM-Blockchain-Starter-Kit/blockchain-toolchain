@@ -19,7 +19,7 @@ stages:
     type: builder
     script: |-
       #!/bin/bash
-      #source <(curl -sSL "${SCRIPT_URL}/prepare-unstable.sh")
+      source <(curl -sSL "${SCRIPT_URL}/prepare-unstable.sh")
 # - name: BUILD
 #   inputs:
 #   - type: job
