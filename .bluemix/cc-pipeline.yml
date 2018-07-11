@@ -40,28 +40,27 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      echo "PLATFORM IS "${PLATFORM}
-      #source "${SCRIPT_DIR}/router.sh build ${PLATFORM}"
-# - name: TEST
-#   inputs:
-#   - type: job
-#     stage: BUILD
-#     job: Build Chaincode
-#   triggers:
-#   - type: stage
-#   properties:
-#   - name: PLATFORM
-#     value: ${PLATFORM}
-#     type: text
-#   - name: SCRIPT_DIR
-#     value: ${SCRIPT_DIR}
-#     type: text 
-#   jobs:
-#   - name: Test
-#     type: tester
-#     script: |-
-#       #!/bin/bash -x
-#       #source ${SCRIPT_DIR}/router.sh test ${PLATFORM}
+      source "${SCRIPT_DIR}/router.sh build ${PLATFORM}"
+- name: TEST
+  inputs:
+  - type: job
+    stage: BUILD
+    job: Build Chaincode
+  triggers:
+  - type: stage
+  properties:
+  - name: PLATFORM
+    value: ${PLATFORM}
+    type: text
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text 
+  jobs:
+  - name: Test
+    type: tester
+    script: |-
+      #!/bin/bash -x
+      source ${SCRIPT_DIR}/router.sh test ${PLATFORM}
 # - name: DEPLOY
 #   inputs:
 #   - type: job
