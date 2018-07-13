@@ -42,8 +42,6 @@ services:
           $text: pipeline.yml
         env:
           SCRIPT_DIR: './scripts/'
-          SCRIPT_URL: 'https://raw.githubusercontent.com/IBM-Blockchain-Starter-Kit/build-lib/master/scripts'
-          BUILD_SCRIPTS: 'pipeline-BLOCKCHAIN.sh pipeline-BUILD.sh pipeline-CLOUDANT.sh pipeline-COMMON.sh pipeline-DEPLOY.sh'
           SAMPLE_REPO: sample-repo
           BLOCKCHAIN_SERVICE_INSTANCE: '{{form.pipeline.parameters.blockchain-service-instance}}'
           CLOUDANT_SERVICE_INSTANCE: '{{form.pipeline.parameters.cloudant-service-instance}}'
