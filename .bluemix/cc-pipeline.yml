@@ -19,7 +19,7 @@ stages:
     type: builder
     script: |-
       #!/bin/bash
-      source <(curl -sSL "${SCRIPT_URL}/prepare.sh")
+      source <(curl -sSL "${SCRIPT_URL}/prepare-unstable.sh")
 - name: BUILD
   inputs:
   - type: job
@@ -27,86 +27,73 @@ stages:
     job: Prepare
   triggers:
   - type: stage
+  properties:
+  - name: PLATFORM
+    value: ${PLATFORM}
+    type: text
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text 
   jobs:
-  - name: Build Go Chaincode
+  - name: Build Chaincode
     type: builder
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      source ./scripts/build.sh
-- name: UNITEST
+      source "${SCRIPT_DIR}/router.sh" build "${PLATFORM}"
+- name: TEST
   inputs:
   - type: job
     stage: BUILD
-    job: Build Go Chaincode
+    job: Build Chaincode
   triggers:
   - type: stage
+  properties:
+  - name: PLATFORM
+    value: ${PLATFORM}
+    type: text
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text 
   jobs:
-  - name: Unit Tests
+  - name: Test
     type: tester
-    enable_tests: false
     script: |-
       #!/bin/bash -x
-      # script defined in chaincode project
-      source ./scripts/unitest.sh
-- name: DEV-DEPLOY
+      source "${SCRIPT_DIR}/router.sh" test "${PLATFORM}"
+- name: DEPLOY
   inputs:
   - type: job
     stage: BUILD
-    job: Build Go Chaincode
+    job: Build Chaincode
   triggers:
   - type: stage
   properties:
-  - name: UTILS_REPO_OWNER
-    value: ${UTILS_REPO_OWNER}
+  - name: PLATFORM
+    value: ${PLATFORM}
     type: text
-  - name: UTILS_REPO_NAME
-    value: ${UTILS_REPO_NAME}
-    type: text
-  - name: ENV_REPO_OWNER
-    value: ${ENV_REPO_OWNER}
-    type: text
-  - name: ENV_REPO_NAME
-    value: ${ENV_REPO_NAME}
-    type: text
-  - name: BX_GIT_PAT
-    value: ${BX_GIT_PAT}
-    type: text
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text 
+  - name: BLOCKCHAIN_SERVICE_INSTANCE
+    value: ${BLOCKCHAIN_SERVICE_INSTANCE}
+    type: text 
+  - name: CLOUDANT_SERVICE_INSTANCE
+    value: ${CLOUDANT_SERVICE_INSTANCE}
+    type: text 
+  - name: REGION_ID
+    value: ${REGION_ID}
+    type: text 
   jobs:
   - name: Chaincode Deploy
-    type: builder
+    type: deployer
+    target:
+     region_id: ${REGION_ID}
+     organization: ${ORG_NAME}
+     space: ${SPACE_NAME}
+     application: ${APP_NAME}
     script: |-
       #!/bin/bash -x
-      # script defined in chaincode project
-      source ./scripts/deploy-enterprise.sh  dev
-- name: PROD-DEPLOY
-  inputs:
-  - type: job
-    stage: BUILD
-    job: Build Go Chaincode
-  triggers:
-  - type: stage
-  properties:
-  - name: UTILS_REPO_OWNER
-    value: ${UTILS_REPO_OWNER}
-    type: text
-  - name: UTILS_REPO_NAME
-    value: ${UTILS_REPO_NAME}
-    type: text
-  - name: ENV_REPO_OWNER
-    value: ${ENV_REPO_OWNER}
-    type: text
-  - name: ENV_REPO_NAME
-    value: ${ENV_REPO_NAME}
-    type: text
-  - name: BX_GIT_PAT
-    value: ${BX_GIT_PAT}
-    type: text
-  jobs:
-  - name: Chaincode Deploy
-    type: builder
-    script: |-
-      #!/bin/bash -x
-      # script defined in chaincode project
-      source ./scripts/deploy-enterprise.sh  prod
+      source "${SCRIPT_DIR}/router.sh" deploy "${PLATFORM}"
+    
 

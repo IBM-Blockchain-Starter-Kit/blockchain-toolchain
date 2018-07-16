@@ -17,7 +17,7 @@ template:
     git branch: >-
       [chaincode](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain/tree/chaincode)
 toolchain:
-  name: 'XXXXX-mvp'
+  name: 'Blockchain-{{timestamp}}-mvp'
   template:
     getting_started:
       $ref: "#/messages/template.gettingStarted"
@@ -41,20 +41,25 @@ services:
         content:
           $text: cc-pipeline.yml
         env:
+          PLATFORM: '{{platform}}'
           CC_REPO: chaincode-repo
-          BX_GIT_PAT: '{{form.pipeline.parameters.bx-git-pat}}'
-          UTILS_REPO_OWNER: '{{form.utils-repo.parameters.owner_id}}'
-          UTILS_REPO_NAME: '{{form.utils-repo.parameters.repo_name}}'
-          ENV_REPO_OWNER: '{{form.env-repo.parameters.owner_id}}'
-          ENV_REPO_NAME: '{{form.env-repo.parameters.repo_name}}'
-          PROD_SPACE_NAME: '{{form.pipeline.parameters.prod-space}}'
-          PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
-          PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
+          BLOCKCHAIN_SERVICE_INSTANCE: '{{form.pipeline.parameters.blockchain-service-instance}}'
+          CLOUDANT_SERVICE_INSTANCE: '{{form.pipeline.parameters.cloudant-service-instance}}'
+          APP_NAME: '{{form.pipeline.parameters.deploy-app-name}}'
+          REGION_ID: '{{form.pipeline.parameters.deploy-region}}'
+          ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
+          SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
           SCRIPT_DIR: './scripts/'
-          SCRIPT_URL: 'https://raw.githubusercontent.com/IBM-Blockchain-Starter-Kit/build-lib/master/scripts/chaincode-pipeline'
-          SAMPLE_REPO: sample-repo
+          SCRIPT_URL: 'https://raw.githubusercontent.com/IBM-Blockchain-Starter-Kit/build-lib/master/src'
         execute: true
 form:
   pipeline:
+    parameters:
+      blockchain-service-instance: 'Blockchain-{{timestamp}}'
+      cloudant-service-instance: 'Wallet-{{timestamp}}'
+      deploy-app-name: '{{services.chaincode-repo.parameters.repo_name}}'
+      deploy-region: '{{region}}'
+      deploy-organization: '{{organization}}'
+      deploy-space: '{{space}}'
     schema:
       $ref: deploy.json
