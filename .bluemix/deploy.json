@@ -40,7 +40,7 @@
                 "$ref": "#/messages/deploy.regionDescription"
             },
             "type": "string",
-            "pattern": "^(ibm:yp:us-south|ibm:ys1:us-south)$"
+            "pattern": "^ibm:((yp|ys1):(us-south|eu-gb)|yp:au-syd)$"
         },
         "deploy-organization": {
             "description": {
@@ -91,6 +91,12 @@
                 "$ref": "#/messages/deploy.appName"
             },
             "key": "deploy-app-name"
+        },
+        {
+            "type": "label",
+            "title": {
+                "$ref": "#/messages/deploy.regionNotes"
+            }
         },
         {
             "type": "table",
