@@ -26,7 +26,7 @@ services:
     service_id: hostedgit
     parameters:
       repo_name: '{{toolchain.name}}-cc-repo'
-      repo_url: 'https://github.com/IBM-Blockchain-Starter-Kit/chaincode-bootstrap.git'
+      repo_url: '{{bootstrapRepo}}'
       type: clone
       has_issues: true
       enable_traceability: true
