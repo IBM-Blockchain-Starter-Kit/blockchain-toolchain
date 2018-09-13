@@ -21,20 +21,6 @@
             "type": "string",
             "pattern": "^.{1,50}$"
         },
-        "cloudant-service-instance": {
-            "description": {
-                "$ref": "#/messages/deploy.cloudantServiceDescription"
-            },
-            "type": "string",
-            "pattern": "^.{1,50}$"
-        },
-        "deploy-app-name": {
-            "description": {
-                "$ref": "#/messages/deploy.appDescription"
-            },
-            "type": "string",
-            "pattern": "\\S"
-        },
         "deploy-region": {
             "description": {
                 "$ref": "#/messages/deploy.regionDescription"
@@ -57,8 +43,6 @@
     },
     "required": [
         "blockchain-service-instance",
-        "cloudant-service-instance",
-        "deploy-app-name",
         "deploy-region",
         "deploy-organization",
         "deploy-space"
@@ -75,22 +59,6 @@
                 "$ref": "#/messages/deploy.blockchainServiceName"
             },
             "key": "blockchain-service-instance"
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-                "$ref": "#/messages/deploy.cloudantServiceName"
-            },
-            "key": "cloudant-service-instance"
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-                "$ref": "#/messages/deploy.appName"
-            },
-            "key": "deploy-app-name"
         },
         {
             "type": "label",
