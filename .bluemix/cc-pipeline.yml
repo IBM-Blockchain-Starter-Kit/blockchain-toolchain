@@ -11,15 +11,24 @@ stages:
   - name: SCRIPT_DIR
     value: ${SCRIPT_DIR}
     type: text
-  - name: SCRIPT_URL
-    value: ${SCRIPT_URL}
+  - name: BUILD_LIB_URL
+    value: 'https://github.com/IBM-Blockchain-Starter-Kit/build-lib/releases/download/v0.3.1/blockchain-build-lib.tgz'
     type: text
   jobs:
   - name: Prepare
     type: builder
     script: |-
       #!/bin/bash
-      source <(curl -sSL "${SCRIPT_URL}/prepare-unstable.sh")
+      set -ex
+
+      if [ -n "$BUILD_LIB_URL" ]; then
+        build_lib_dir=$(mktemp -d)
+
+        (curl -fsSL "$BUILD_LIB_URL") > "$build_lib_dir/blockchain-build-lib.tgz"
+
+        mkdir -p "$SCRIPT_DIR"
+        tar --keep-old-files -xvzf "$build_lib_dir/blockchain-build-lib.tgz" -C "$SCRIPT_DIR" > /dev/null 2>&1 || true
+      fi
 - name: BUILD
   inputs:
   - type: job
@@ -91,7 +100,6 @@ stages:
      region_id: ${REGION_ID}
      organization: ${ORG_NAME}
      space: ${SPACE_NAME}
-     application: ${APP_NAME}
     script: |-
       #!/bin/bash -x
       source "${SCRIPT_DIR}/router.sh" deploy "${PLATFORM}"
