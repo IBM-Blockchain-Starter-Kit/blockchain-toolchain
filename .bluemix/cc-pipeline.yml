@@ -12,7 +12,7 @@ stages:
     value: ${SCRIPT_DIR}
     type: text
   - name: BUILD_LIB_URL
-    value: 'https://github.com/IBM-Blockchain-Starter-Kit/build-lib/releases/download/v0.3.1/blockchain-build-lib.tgz'
+    value: 'https://github.com/IBM-Blockchain-Starter-Kit/build-lib/releases/download/v0.4/blockchain-build-lib.tgz'
     type: text
   jobs:
   - name: Prepare
