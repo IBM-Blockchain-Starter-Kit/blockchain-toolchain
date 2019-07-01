@@ -13,7 +13,7 @@ stages:
     value: ${SCRIPT_DIR}
     type: text
   - name: BUILD_LIB_URL
-    value: 'https://github.com/abisarvepalli/build-lib/releases/download/v0.4/blockchain-build-lib.tgz'
+    value: 'https://github.com/abisarvepalli/build-lib/archive/v0.4.tar.gz'
     type: text
   jobs:
   - name: Prepare
