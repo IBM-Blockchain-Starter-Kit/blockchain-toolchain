@@ -6,7 +6,7 @@ This starter kit is intended to bootstrap your development experience building b
 
 You will need an [IBM Cloud account](https://console.bluemix.net/dashboard/apps/) with permissions to create new services on the bluemix domain. 
 
-You will need a [IBM Blockchain platform](https://console.bluemix.net/docs/services/blockchain/index.html#ibm-blockchain-platform) payment plan associated with this account. A starter plan or enterprise plan will work. 
+You will need a [IBM Blockchain platform](https://console.bluemix.net/docs/services/blockchain/index.html#ibm-blockchain-platform) payment plan associated with this account. A starter plan or enterprise plan will work.
 
 ## How it works
 
@@ -37,4 +37,4 @@ This delivery pipeline will queue a build stage when the gitlab repository is pu
 
 |One-Click Toolchain Creation|Platform|Language|
 |---------|----------|----------|
-|[![Deploy To Bluemix](https://console.ng.bluemix.net/devops/graphics/create_toolchain_button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain&branch=chaincode&platform=go&bootstrapRepo=https://github.com/IBM-Blockchain-Starter-Kit/chaincode-bootstrap.git)| Fabric | GoLang
+|[![Deploy To Bluemix](https://console.ng.bluemix.net/devops/graphics/create_toolchain_button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/abisarvepalli/blockchain-toolchain&branch=chaincode&platform=go&bootstrapRepo=https://github.com/abisarvepalli/chaincode-bootstrap.git)| Fabric | GoLang |

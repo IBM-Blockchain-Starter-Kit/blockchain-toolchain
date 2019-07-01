@@ -1,5 +1,6 @@
 ---
 stages:
+
 - name: PREPARE
   inputs:
   - type: git
@@ -12,7 +13,7 @@ stages:
     value: ${SCRIPT_DIR}
     type: text
   - name: BUILD_LIB_URL
-    value: 'https://github.com/IBM-Blockchain-Starter-Kit/build-lib/releases/download/v0.4/blockchain-build-lib.tgz'
+    value: 'https://github.com/abisarvepalli/build-lib/releases/download/v0.4/blockchain-build-lib.tgz'
     type: text
   jobs:
   - name: Prepare
@@ -29,6 +30,7 @@ stages:
         mkdir -p "$SCRIPT_DIR"
         tar --keep-old-files -xvzf "$build_lib_dir/blockchain-build-lib.tgz" -C "$SCRIPT_DIR" > /dev/null 2>&1 || true
       fi
+
 - name: BUILD
   inputs:
   - type: job
@@ -50,6 +52,7 @@ stages:
       #!/bin/bash -x
       # script defined in chaincode project
       source "${SCRIPT_DIR}/router.sh" build "${PLATFORM}"
+
 - name: TEST
   inputs:
   - type: job
@@ -70,6 +73,7 @@ stages:
     script: |-
       #!/bin/bash -x
       source "${SCRIPT_DIR}/router.sh" test "${PLATFORM}"
+      
 - name: DEPLOY
   inputs:
   - type: job
