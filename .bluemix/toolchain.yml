@@ -17,7 +17,7 @@ template:
     git branch: >-
       [chaincode](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain/tree/chaincode)
 toolchain:
-  name: 'Blockchain-{{timestamp}}-mvp'
+  name: 'Blockchain-{{platform}}-{{timestamp}}-mvp'
   template:
     getting_started:
       $ref: "#/messages/template.gettingStarted"
