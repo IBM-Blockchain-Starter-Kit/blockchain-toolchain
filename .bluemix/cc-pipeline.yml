@@ -51,7 +51,7 @@ stages:
     script: |-
       #!/bin/bash -x
       # script defined in chaincode project
-      source "${SCRIPT_DIR}/router.sh" build "${PLATFORM}"
+      source "${SCRIPT_DIR}router.sh" build "${PLATFORM}"
 
 - name: TEST
   inputs:
