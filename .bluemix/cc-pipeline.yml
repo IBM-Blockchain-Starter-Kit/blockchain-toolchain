@@ -53,36 +53,6 @@ stages:
       # script defined in chaincode project
       source "${SCRIPT_DIR}router.sh" build "${PLATFORM}"
 
-- name: PREPARE2
-  inputs:
-  - type: git
-    branch: master
-    service: ${CC_REPO}
-  triggers:
-  - type: commit
-  properties:
-  - name: SCRIPT_DIR
-    value: ${SCRIPT_DIR}
-    type: text
-  - name: BUILD_LIB_URL
-    value: 'https://github.com/abisarvepalli/build-lib/releases/download/v0.6/blockchain-build-lib.tgz'
-    type: text
-  jobs:
-  - name: Prepare
-    type: builder
-    script: |-
-      #!/bin/bash
-      set -ex
-
-      if [ -n "$BUILD_LIB_URL" ]; then
-        build_lib_dir=$(mktemp -d)
-
-        (curl -fsSL "$BUILD_LIB_URL") > "$build_lib_dir/blockchain-build-lib.tgz"
-
-        mkdir -p "$SCRIPT_DIR"
-        tar --keep-old-files -xvzf "$build_lib_dir/blockchain-build-lib.tgz" -C "$SCRIPT_DIR" > /dev/null 2>&1 || true
-      fi
-
 - name: TEST
   inputs:
   - type: job
