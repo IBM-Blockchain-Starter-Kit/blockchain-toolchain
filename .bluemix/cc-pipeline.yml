@@ -60,6 +60,9 @@ stages:
   - name: SCRIPT_DIR
     value: ${SCRIPT_DIR}
     type: text 
+  - name: FABRIC_CLI_DIR
+    value: ${FABRIC_CLI_DIR}
+    type: text
   jobs:
   - name: Build Chaincode
     type: builder
@@ -103,6 +106,9 @@ stages:
   - name: SCRIPT_DIR
     value: ${SCRIPT_DIR}
     type: text 
+  - name: FABRIC_CLI_DIR
+    value: ${FABRIC_CLI_DIR}
+    type: text
   - name: BLOCKCHAIN_SERVICE_INSTANCE
     value: ${BLOCKCHAIN_SERVICE_INSTANCE}
     type: text 
