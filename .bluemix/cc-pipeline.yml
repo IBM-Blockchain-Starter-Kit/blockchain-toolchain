@@ -63,9 +63,9 @@ stages:
   - name: NVM_DIR
     value: ${NVM_DIR}
     type: text
-  # - name: FABRIC_CLI_DIR
-  #   value: ${FABRIC_CLI_DIR}
-  #   type: text
+  - name: FABRIC_CLI_DIR
+    value: ${FABRIC_CLI_DIR}
+    type: text
   jobs:
   - name: Build Chaincode
     type: builder
