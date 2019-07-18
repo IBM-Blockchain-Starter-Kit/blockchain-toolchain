@@ -49,7 +49,7 @@ services:
           SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
           SCRIPT_DIR: './scripts/'
           FABRIC_CLI_DIR: './fabric-cli/'    
-          NVM_DIR: '/.nvm/'      
+          NVM_DIR: './.nvm/'      
         execute: true
 form:
   pipeline:
