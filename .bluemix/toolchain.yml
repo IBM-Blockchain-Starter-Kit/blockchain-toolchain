@@ -48,8 +48,8 @@ services:
           ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
           SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
           SCRIPT_DIR: './scripts/'
-          FABRIC_CLI_DIR: './fabric-cli/'    
-          NVM_DIR: './.nvm/'      
+          FABRIC_CLI_DIR: './fabric-cli/'
+          NVM_DIR: '$HOME/.nvm/'
         execute: true
 form:
   pipeline:
