@@ -15,6 +15,9 @@ stages:
   - name: BUILD_LIB_URL
     value: 'https://github.com/abisarvepalli/build-lib/releases/download/v0.6/blockchain-build-lib.tgz'
     type: text
+  - name: NVM_DIR
+    value: ${NVM_DIR}
+    type: text
   - name: FABRIC_CLI_DIR
     value: ${FABRIC_CLI_DIR}
     type: text
@@ -36,6 +39,15 @@ stages:
 
         mkdir -p "$SCRIPT_DIR"
         tar --keep-old-files -xvzf "$build_lib_dir/blockchain-build-lib.tgz" -C "$SCRIPT_DIR" > /dev/null 2>&1 || true
+
+        # download node via nvm
+        npm config delete prefix
+        curl "https://raw.githubusercontent.com/creationix/nvm/v${NVM_VERSION}/install.sh" | bash
+        . "$HOME/.nvm/nvm.sh"
+        nvm alias default "$NODE_VERSION"
+        nvm use default
+        echo "npm...$(which npm)...$(npm -v)" \
+        echo "node...$(which node)...$(node -v)"
 
         # download fabric-cli
         fabric_cli_dir=$(mktemp -d)
