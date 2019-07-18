@@ -60,6 +60,9 @@ stages:
   - name: SCRIPT_DIR
     value: ${SCRIPT_DIR}
     type: text 
+  - name: NVM_DIR
+    value: ${NVM_DIR}
+    type: text
   - name: FABRIC_CLI_DIR
     value: ${FABRIC_CLI_DIR}
     type: text
@@ -84,7 +87,10 @@ stages:
     type: text
   - name: SCRIPT_DIR
     value: ${SCRIPT_DIR}
-    type: text 
+    type: text
+  - name: NVM_DIR
+    value: ${NVM_DIR}
+    type: text
   jobs:
   - name: Test
     type: tester
@@ -106,6 +112,9 @@ stages:
   - name: SCRIPT_DIR
     value: ${SCRIPT_DIR}
     type: text 
+  - name: NVM_DIR
+    value: ${NVM_DIR}
+    type: text
   - name: FABRIC_CLI_DIR
     value: ${FABRIC_CLI_DIR}
     type: text
