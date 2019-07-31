@@ -1,6 +1,8 @@
 version: '2'
+
 messages:
   $i18n: locales.yml
+
 template:
   name:
     $ref: "#/messages/template.name"
@@ -13,14 +15,16 @@ template:
     - chaincode-build
   info:
     git url: >-
-      [https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain)
+      [https://github.com/abisarvepalli/blockchain-toolchain](https://github.com/abisarvepalli/blockchain-toolchain)
     git branch: >-
-      [chaincode](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain/tree/chaincode)
+      [https://github.com/abisarvepalli/blockchain-toolchain/tree/chaincode-v2](https://github.com/abisarvepalli/blockchain-toolchain/tree/chaincode-v2)
+
 toolchain:
   name: 'Blockchain-{{platform}}-{{timestamp}}-mvp'
   template:
     getting_started:
       $ref: "#/messages/template.gettingStarted"
+
 services:
   chaincode-repo:
     service_id: hostedgit
@@ -30,6 +34,7 @@ services:
       type: clone
       has_issues: true
       enable_traceability: true
+
   chaincode-build:
     service_id: pipeline
     parameters:
@@ -48,8 +53,9 @@ services:
           ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
           SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
           SCRIPT_DIR: './scripts/'
-          FABRIC_CLI_DIR: '$HOME/.fabric-cli/'
+          FABRIC_CLI_DIR: './fabric-cli/'
         execute: true
+
 form:
   pipeline:
     parameters:
