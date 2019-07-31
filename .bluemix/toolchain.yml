@@ -48,7 +48,7 @@ services:
           ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
           SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
           SCRIPT_DIR: './scripts/'
-          FABRIC_CLI_DIR: './fabric-cli/'
+          FABRIC_CLI_DIR: '$HOME/.fabric-cli/'
         execute: true
 form:
   pipeline:
