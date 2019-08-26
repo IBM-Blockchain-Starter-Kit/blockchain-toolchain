@@ -14,18 +14,18 @@
     },
     "type": "object",
     "properties": {
-        "org-admin-identity": {
+        "organization-admin-identity": {
             "title": "Admin Identity (JSON formatted)",
             "description": {
-                "$ref": "#/messages/deploy.organizationAdminIdentity"
+                "$ref": "#/messages/deploy.organizationAdminIdentityDescription"
             },
             "type": "string",
             "default": "{ ... }"
         },
-        "org-connection-profile": {
+        "organization-connection-profile": {
             "title": "Channel Profile (JSON formatted)",
             "description": {
-                "$ref": "#/messages/deploy.organizationConnectionProfile"
+                "$ref": "#/messages/deploy.organizationConnectionProfileDescription"
             },
             "type": "string",
             "default": "{ ... }"
@@ -42,7 +42,7 @@
             "title": {
                 "$ref": "#/messages/deploy.organizationAdminIdentity"
             },
-            "key": "org-admin-identity"
+            "key": "organization-admin-identity"
         },
         {
             "type": "text",
@@ -50,7 +50,7 @@
             "title": {
                 "$ref": "#/messages/deploy.organizationConnectionProfile"
             },
-            "key": "org-connection-profile"
+            "key": "organization-connection-profile"
         }
     ]
 }

@@ -70,7 +70,7 @@ form:
 
   config:
     parameters:
-      org-admin-identity: '{{admin-identity}}'
-      org-connection-profile: '{{connprofile}}'
+      organization-admin-identity: '{{admin-identity}}'
+      organization-connection-profile: '{{connprofile}}'
     schema:
       $ref: deploy.json
