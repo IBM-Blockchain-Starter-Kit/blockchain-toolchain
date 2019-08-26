@@ -14,95 +14,56 @@
     },
     "type": "object",
     "properties": {
-        "blockchain-service-instance": {
+        "org-admin-certificate": {
             "description": {
-                "$ref": "#/messages/deploy.blockchainServiceDescription"
+                "$ref": "#/messages/deploy.organizationAdminCertificate"
             },
             "type": "string",
             "pattern": "^.{1,50}$"
         },
-        "deploy-region": {
+        "org-connection-profile": {
             "description": {
-                "$ref": "#/messages/deploy.regionDescription"
+                "$ref": "#/messages/deploy.organizationConnectionProfile"
             },
             "type": "string",
-            "pattern": "^ibm:((yp|ys1):(us-south|eu-gb)|yp:au-syd)$"
-        },
-        "deploy-organization": {
-            "description": {
-                "$ref": "#/messages/deploy.organizationDescription"
-            },
-            "type": "string"
-        },
-        "deploy-space": {
-            "description": {
-                "$ref": "#/messages/deploy.spaceDescription"
-            },
-            "type": "string"
+            "pattern": "^.{1,50}$"
         }
     },
     "required": [
-        "blockchain-service-instance",
-        "deploy-region",
-        "deploy-organization",
-        "deploy-space"
+        "org-admin-certificate",
+        "org-connection-profile"
     ],
     "form": [
         {
-            "type": "validator",
-            "url": "/devops/setup/bm-helper/helper.html"
-        },
-        {
-            "type": "text",
-            "readonly": false,
-            "title": {
-                "$ref": "#/messages/deploy.blockchainServiceName"
-            },
-            "key": "blockchain-service-instance"
-        },
-        {
-            "type": "label",
-            "title": {
-                "$ref": "#/messages/deploy.regionNotes"
-            }
-        },
-        {
             "type": "table",
-            "columnCount": 3,
-            "widths": ["33%", "33%", "33%"],
+            "columnCount": 2,
+            "widths": [ "50%", "50%" ],
             "items": [
                 {
                     "type": "label",
                     "title": {
-                        "$ref": "#/messages/deploy.regionName"
+                        "$ref": "#/messages/organizationAdminCertificate"
                     }
                 },
                 {
                     "type": "label",
                     "title": {
-                        "$ref": "#/messages/deploy.organizationName"
+                        "$ref": "#/messages/organizationConnectionProfile"
                     }
                 },
+
                 {
-                    "type": "label",
-                    "title": {
-                        "$ref": "#/messages/deploy.spaceName"
-                    }
+                    "type": "string",
+                    "key": "org-admin-certificate"
                 },
                 {
-                    "type": "select",
-                    "key": "deploy-region"
-                },
-                {
-                    "type": "select",
-                    "key": "deploy-organization"
-                },
-                {
-                    "type": "select",
-                    "key": "deploy-space",
-                    "readonly": false
+                    "type": "string",
+                    "key": "org-connection-profile"
                 }
             ]
+        },
+        {
+
         }
     ]
 }
