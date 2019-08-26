@@ -37,13 +37,20 @@
     ],
     "form": [
         {
-            "type": "table",
-            "columnCount": 2,
-            "widths": [ "20%", "80%" ],
-            "items": [
-                "org-admin-identity",
-                "org-connection-profile"
-            ]
+            "type": "text",
+            "readonly": "false",
+            "title": {
+                "$ref": "#/messages/deploy.organizationAdminIdentity"
+            },
+            "key": "org-admin-identity"
+        },
+        {
+            "type": "text",
+            "readonly": "false",
+            "title": {
+                "$ref": "#/messages/deploy.organizationConnectionProfile"
+            },
+            "key": "org-connection-profile"
         }
     ]
 }
