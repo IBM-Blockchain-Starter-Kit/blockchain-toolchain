@@ -15,6 +15,7 @@
     "type": "object",
     "properties": {
         "org-admin-identity": {
+            "title": "Admin Identity",
             "description": {
                 "$ref": "#/messages/deploy.organizationAdminIdentity"
             },
@@ -22,6 +23,7 @@
             "pattern": "^.{1,50}$"
         },
         "org-connection-profile": {
+            "title": "Channel Connection Profile",
             "description": {
                 "$ref": "#/messages/deploy.organizationConnectionProfile"
             },
