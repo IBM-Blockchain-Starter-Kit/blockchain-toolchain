@@ -37,7 +37,7 @@
         {
             "type": "table",
             "columnCount": 2,
-            "widths": [ "50%", "50%" ],
+            "widths": [ "15%", "85%" ],
             "items": [
                 {
                     "type": "label",
