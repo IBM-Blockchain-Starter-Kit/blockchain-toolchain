@@ -46,15 +46,15 @@
                     }
                 },
                 {
+                    "type": "string",
+                    "key": "org-admin-certificate"
+                },
+
+                {
                     "type": "label",
                     "title": {
                         "$ref": "#/messages/organizationConnectionProfile"
                     }
-                },
-
-                {
-                    "type": "string",
-                    "key": "org-admin-certificate"
                 },
                 {
                     "type": "string",
