@@ -42,12 +42,12 @@
                 {
                     "type": "label",
                     "title": {
-                        "$ref": "#/messages/organizationAdminCertificate"
+                        "$ref": "#/messages/organizationAdminIdentity"
                     }
                 },
                 {
                     "type": "string",
-                    "key": "org-admin-certificate"
+                    "key": "org-admin-identity"
                 },
 
                 {
