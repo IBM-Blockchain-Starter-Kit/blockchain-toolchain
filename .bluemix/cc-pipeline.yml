@@ -32,23 +32,23 @@ stages:
         echo "=> Downloading Blockchain Build Libraries..."
         # download blockchain-build-lib
         build_lib_dir=$(mktemp -d)
-
         mkdir -p "$SCRIPT_DIR"
-        git clone "$BUILD_LIB_URL" "$SCRIPT_DIR" > /dev/null 2>&1 || true
 
-      #   (curl -fsSL "$BUILD_LIB_URL") > "$build_lib_dir/blockchain-build-lib.tgz"
-      #   tar --keep-old-files -xvzf "$build_lib_dir/blockchain-build-lib.tgz" -C "$SCRIPT_DIR" > /dev/null 2>&1 || true
+        (curl -fsSL "$BUILD_LIB_URL") > "$build_lib_dir/blockchain-build-lib.tgz"
+        tar --keep-old-files -xvzf "$build_lib_dir/blockchain-build-lib.tgz" -C "$SCRIPT_DIR" > /dev/null 2>&1 || true
+
+        # git clone "$BUILD_LIB_URL" "$SCRIPT_DIR" > /dev/null 2>&1 || true
       fi
       if [ -n "$FABRIC_CLI_URL" ]; then
         echo "=> Downloading Fabric-CLI..."
         # download fabric-cli
         fabric_cli_dir=$(mktemp -d)
-
         mkdir -p "$FABRIC_CLI_DIR"
-        git clone "$FABRIC_CLI_URL" "$FABRIC_CLI_DIR" > /dev/null 2>&1 || true
 
-      #   (curl -fsSL "$FABRIC_CLI_URL") > "$fabric_cli_dir/fabric-cli.tgz"
-      #   tar --keep-old-files -xvzf "$fabric_cli_dir/fabric-cli.tgz" -C "$FABRIC_CLI_DIR" > /dev/null 2>&1 || true
+        (curl -fsSL "$FABRIC_CLI_URL") > "$fabric_cli_dir/fabric-cli.tgz"
+        tar --keep-old-files -xvzf "$fabric_cli_dir/fabric-cli.tgz" -C "$FABRIC_CLI_DIR" > /dev/null 2>&1 || true
+
+        # git clone "$FABRIC_CLI_URL" "$FABRIC_CLI_DIR" > /dev/null 2>&1 || true
       fi
 
 - name: BUILD
