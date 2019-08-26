@@ -17,7 +17,7 @@ template:
     git url: >-
       [https://github.com/abisarvepalli/blockchain-toolchain](https://github.com/abisarvepalli/blockchain-toolchain)
     git branch: >-
-      [https://github.com/abisarvepalli/blockchain-toolchain/tree/chaincode-v2](https://github.com/abisarvepalli/blockchain-toolchain/tree/chaincode-v2)
+      [https://github.com/abisarvepalli/blockchain-toolchain/tree/new-form](https://github.com/abisarvepalli/blockchain-toolchain/tree/new-form)
 
 toolchain:
   name: 'Blockchain-{{platform}}-{{timestamp}}-mvp'
@@ -52,6 +52,8 @@ services:
           REGION_ID: '{{form.pipeline.parameters.deploy-region}}'
           ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
           SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
+          ADMIN_IDENTITY: '{{form.config.org-admin-identity}}'
+          CONNECTION_PROFILE: '{{form.config.org-connection-profile}}'
           SCRIPT_DIR: './scripts/'
           FABRIC_CLI_DIR: './fabric-cli/'
         execute: true
@@ -63,5 +65,12 @@ form:
       deploy-region: '{{region}}'
       deploy-organization: '{{organization}}'
       deploy-space: '{{space}}'
+    schema:
+      $ref: deploy-pipeline.json
+
+  config:
+    parameters:
+      org-admin-identity: '{{admin-identity}}'
+      org-connection-profile: '{{connprofile}}'
     schema:
       $ref: deploy.json

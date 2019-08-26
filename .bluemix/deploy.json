@@ -14,9 +14,9 @@
     },
     "type": "object",
     "properties": {
-        "org-admin-certificate": {
+        "org-admin-identity": {
             "description": {
-                "$ref": "#/messages/deploy.organizationAdminCertificate"
+                "$ref": "#/messages/deploy.organizationAdminIdentity"
             },
             "type": "string",
             "pattern": "^.{1,50}$"
@@ -30,7 +30,7 @@
         }
     },
     "required": [
-        "org-admin-certificate",
+        "org-admin-identity",
         "org-connection-profile"
     ],
     "form": [
