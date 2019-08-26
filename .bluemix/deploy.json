@@ -39,10 +39,11 @@
         {
             "type": "table",
             "columnCount": 2,
-            "widths": [ "15%", "85%" ],
+            "widths": [ "20%", "80%" ],
             "items": [
                 {
-                    "org-admin-identity"
+                    "type": "label",
+                    "title": "Admin Identity"
                 },
                 {
                     "type": "string",
