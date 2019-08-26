@@ -42,10 +42,7 @@
             "widths": [ "15%", "85%" ],
             "items": [
                 {
-                    "type": "label",
-                    "title": {
-                        "$ref": "#/messages/organizationAdminIdentity"
-                    }
+                    "org-admin-identity"
                 },
                 {
                     "type": "string",
