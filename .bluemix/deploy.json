@@ -15,20 +15,20 @@
     "type": "object",
     "properties": {
         "org-admin-identity": {
-            "title": "Admin Identity",
+            "title": "Admin Identity (JSON formatted)",
             "description": {
                 "$ref": "#/messages/deploy.organizationAdminIdentity"
             },
             "type": "string",
-            "pattern": "^.{1,50}$"
+            "default": "{ ... }"
         },
         "org-connection-profile": {
-            "title": "Channel Connection Profile",
+            "title": "Channel Profile (JSON formatted)",
             "description": {
                 "$ref": "#/messages/deploy.organizationConnectionProfile"
             },
             "type": "string",
-            "pattern": "^.{1,50}$"
+            "default": "{ ... }"
         }
     },
     "required": [
@@ -41,25 +41,8 @@
             "columnCount": 2,
             "widths": [ "20%", "80%" ],
             "items": [
-                {
-                    "type": "label",
-                    "title": "Admin Identity"
-                },
-                {
-                    "type": "string",
-                    "key": "org-admin-identity"
-                },
-
-                {
-                    "type": "label",
-                    "title": {
-                        "$ref": "#/messages/organizationConnectionProfile"
-                    }
-                },
-                {
-                    "type": "string",
-                    "key": "org-connection-profile"
-                }
+                "org-admin-identity",
+                "org-connection-profile"
             ]
         }
     ]
