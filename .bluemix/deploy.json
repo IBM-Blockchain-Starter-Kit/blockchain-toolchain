@@ -14,25 +14,17 @@
     },
     "type": "object",
     "properties": {
-        "organization-admin-identity": {
-            "title": {
-                "$ref": "#/messages/deploy.organizationAdminIdentity"
-            },
+        "organization-admin-identity": {            
             "description": {
                 "$ref": "#/messages/deploy.organizationAdminIdentityDescription"
             },
-            "type": "string",
-            "default": "{ ... }"
+            "type": "string"
         },
         "organization-connection-profile": {
-            "title": {
-                "$ref": "#/messages/deploy.organizationConnectionProfile"
-            },
             "description": {
                 "$ref": "#/messages/deploy.organizationConnectionProfileDescription"
             },
-            "type": "string",
-            "default": "{ ... }"
+            "type": "string"
         }
     },
     "required": [
@@ -41,8 +33,20 @@
     ],
     "form": [
         {
+            "type": "label",
+            "title": {
+                "$ref": "#/messages/deploy.organizationAdminIdentity"
+            }
+        },
+        {
             "type": "string",            
             "key": "organization-admin-identity"
+        },
+        {
+            "type": "label",
+            "title": {
+                "$ref": "#/messages/deploy.organizationConnectionProfile"
+            }
         },
         {
             "type": "string",
