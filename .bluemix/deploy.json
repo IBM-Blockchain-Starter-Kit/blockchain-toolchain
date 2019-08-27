@@ -15,7 +15,6 @@
     "type": "object",
     "properties": {
         "organization-admin-identity": {
-            "title": "Admin Identity (JSON formatted)",
             "description": {
                 "$ref": "#/messages/deploy.organizationAdminIdentityDescription"
             },
@@ -23,7 +22,6 @@
             "default": "{ ... }"
         },
         "organization-connection-profile": {
-            "title": "Channel Profile (JSON formatted)",
             "description": {
                 "$ref": "#/messages/deploy.organizationConnectionProfileDescription"
             },
