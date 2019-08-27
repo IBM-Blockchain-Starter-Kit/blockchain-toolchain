@@ -62,6 +62,9 @@ form:
   config:
       schema:
         $ref: deploy.json
+      parameters:
+        organization-admin-identity: '{{organization-admin-identity}}'
+        organization-connection-profile: '{{organization-connection-profile}}'
 
   pipeline:
     schema:
