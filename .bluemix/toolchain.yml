@@ -48,10 +48,10 @@ services:
         env:
           PLATFORM: '{{platform}}'
           CC_REPO: chaincode-repo
-          BLOCKCHAIN_SERVICE_INSTANCE: '{{form.pipeline.parameters.blockchain-service-instance}}'
-          REGION_ID: '{{form.pipeline.parameters.deploy-region}}'
-          ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
-          SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
+          # BLOCKCHAIN_SERVICE_INSTANCE: '{{form.pipeline.parameters.blockchain-service-instance}}'
+          # REGION_ID: '{{form.pipeline.parameters.deploy-region}}'
+          # ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
+          # SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
           ADMIN_IDENTITY_STRING: '{{form.config.parameters.organization-admin-identity}}'
           CONNECTION_PROFILE_STRING: '{{form.config.parameters.organization-connection-profile}}'
           SCRIPT_DIR: './scripts/'
@@ -66,13 +66,13 @@ form:
         organization-admin-identity: '{{organization-admin-identity}}'
         organization-connection-profile: '{{organization-connection-profile}}'
 
-  pipeline:
-    schema:
-      $ref: deploy-pipeline.json
-    parameters:
-      blockchain-service-instance: 'Blockchain-{{timestamp}}'
-      deploy-region: '{{region}}'
-      deploy-organization: '{{organization}}'
-      deploy-space: '{{space}}'
+  # pipeline:
+  #   schema:
+  #     $ref: deploy-pipeline.json
+  #   parameters:
+  #     blockchain-service-instance: 'Blockchain-{{timestamp}}'
+  #     deploy-region: '{{region}}'
+  #     deploy-organization: '{{organization}}'
+  #     deploy-space: '{{space}}'
 
   
