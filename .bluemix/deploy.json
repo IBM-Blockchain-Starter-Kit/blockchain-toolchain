@@ -30,8 +30,8 @@
         }
     },
     "required": [
-        "org-admin-identity",
-        "org-connection-profile"
+        "organization-admin-identity",
+        "organization-connection-profile"
     ],
     "form": [
         {
