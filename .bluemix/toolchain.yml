@@ -17,7 +17,7 @@ template:
     git url: >-
       [https://github.com/abisarvepalli/blockchain-toolchain](https://github.com/abisarvepalli/blockchain-toolchain)
     git branch: >-
-      [https://github.com/abisarvepalli/blockchain-toolchain/tree/new-form](https://github.com/abisarvepalli/blockchain-toolchain/tree/new-form)
+      [https://github.com/abisarvepalli/blockchain-toolchain/tree/chaincode-v2](https://github.com/abisarvepalli/blockchain-toolchain/tree/chaincode-v2)
 
 toolchain:
   name: 'Blockchain-{{platform}}-{{timestamp}}-mvp'
