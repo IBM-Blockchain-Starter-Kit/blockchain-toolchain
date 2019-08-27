@@ -52,8 +52,8 @@ services:
           REGION_ID: '{{form.pipeline.parameters.deploy-region}}'
           ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
           SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
-          ADMIN_IDENTITY: '{{form.config.org-admin-identity}}'
-          CONNECTION_PROFILE: '{{form.config.org-connection-profile}}'
+          ADMIN_IDENTITY_STRING: '{{form.config.organization-admin-identity}}'
+          CONNECTION_PROFILE_STRING: '{{form.config.organization-connection-profile}}'
           SCRIPT_DIR: './scripts/'
           FABRIC_CLI_DIR: './fabric-cli/'
         execute: true

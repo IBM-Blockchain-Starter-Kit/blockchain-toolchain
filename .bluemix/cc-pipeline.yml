@@ -123,9 +123,15 @@ stages:
   - name: REGION_ID
     value: ${REGION_ID}
     type: text 
+  - name: ADMIN_IDENTITY_STRING
+    value: ${ADMIN_IDENTITY_STRING}
+    type: text
+  - name: CONNECTION_PROFILE_STRING
+    value: ${CONNECTION_PROFILE_STRING}
+    type: text
   jobs:
-  - name: Chaincode Deploy
-    type: deployer
+  - name: Deploy Chaincode
+    type: builder
     # target:
     #  region_id: ${REGION_ID}
     #  organization: ${ORG_NAME}
