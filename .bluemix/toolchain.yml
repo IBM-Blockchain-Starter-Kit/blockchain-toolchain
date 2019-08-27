@@ -52,14 +52,14 @@ services:
           # REGION_ID: '{{form.pipeline.parameters.deploy-region}}'
           # ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
           # SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
-          ADMIN_IDENTITY_STRING: '{{form.config.parameters.organization-admin-identity}}'
-          CONNECTION_PROFILE_STRING: '{{form.config.parameters.organization-connection-profile}}'
+          ADMIN_IDENTITY_STRING: '{{form.pipeline.parameters.organization-admin-identity}}'
+          CONNECTION_PROFILE_STRING: '{{form.pipeline.parameters.organization-connection-profile}}'
           SCRIPT_DIR: './scripts/'
           FABRIC_CLI_DIR: './fabric-cli/'
         execute: true
 
 form:
-  config:
+  pipeline:
       schema:
         $ref: deploy.json
       parameters:
