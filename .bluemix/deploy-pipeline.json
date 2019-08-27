@@ -19,7 +19,8 @@
                 "$ref": "#/messages/deploy.blockchainServiceDescription"
             },
             "type": "string",
-            "pattern": "^.{1,50}$"
+            "pattern": "^.{1,50}$",
+            "default": "NULL"
         },
         "deploy-region": {
             "description": {
@@ -42,10 +43,6 @@
         }
     },
     "form": [
-        {
-            "type": "validator",
-            "url": "/devops/setup/bm-helper/helper.html"
-        },
         {
             "type": "text",
             "readonly": false,
