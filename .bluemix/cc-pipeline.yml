@@ -126,10 +126,10 @@ stages:
   jobs:
   - name: Chaincode Deploy
     type: deployer
-    target:
-     region_id: ${REGION_ID}
-     organization: ${ORG_NAME}
-     space: ${SPACE_NAME}
+    # target:
+    #  region_id: ${REGION_ID}
+    #  organization: ${ORG_NAME}
+    #  space: ${SPACE_NAME}
     script: |-
       #!/bin/bash -x
       source "${SCRIPT_DIR}/router.sh" deploy "${PLATFORM}"
