@@ -37,19 +37,24 @@
     ],
     "form": [
         {
-            "type": "text",
-            "readonly": "false",
+            "type": "label",
             "title": {
                 "$ref": "#/messages/deploy.organizationAdminIdentity"
             },
+            "key": "blockchain-service-instance"
+        },
+        {
+            "type": "string",            
             "key": "organization-admin-identity"
         },
         {
-            "type": "text",
-            "readonly": "false",
+            "type": "label",
             "title": {
                 "$ref": "#/messages/deploy.organizationConnectionProfile"
-            },
+            }
+        },
+        {
+            "type": "string",
             "key": "organization-connection-profile"
         }
     ]
