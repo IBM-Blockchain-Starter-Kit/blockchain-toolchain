@@ -13,7 +13,7 @@ stages:
     value: ${SCRIPT_DIR}
     type: text
   - name: BUILD_LIB_URL
-    value: 'https://github.com/abisarvepalli/build-lib/releases/download/v1.4/blockchain-build-lib.tgz'
+    value: 'https://github.com/abisarvepalli/build-lib/archive/v1.4.tar.gz'
     type: text
   - name: FABRIC_CLI_DIR
     value: ${FABRIC_CLI_DIR}
@@ -34,8 +34,8 @@ stages:
         build_lib_dir=$(mktemp -d)
         mkdir -p "$SCRIPT_DIR"
 
-        (curl -fsSL "$BUILD_LIB_URL") > "$build_lib_dir/blockchain-build-lib.tgz"
-        tar --keep-old-files -xvzf "$build_lib_dir/blockchain-build-lib.tgz" -C "$SCRIPT_DIR" > /dev/null 2>&1 || true
+        (curl -fsSL "$BUILD_LIB_URL") > "$build_lib_dir/build-lib.tgz"
+        tar --keep-old-files -xvzf "$build_lib_dir/build-lib.tgz" -C "$SCRIPT_DIR" --strip-components 2 > /dev/null 2>&1 || true
 
         # git clone "$BUILD_LIB_URL" "$SCRIPT_DIR" > /dev/null 2>&1 || true
       fi
