@@ -27,9 +27,7 @@ The second section of the form is a git repo and issue tracker configuration. De
 
 ### Continuous Integration Delivery Pipeline
 
-The third section of the form is a delivery pipeline configuration. Here you can target existing service instances by specifying their identifiers or provide unregistered identifier(s) to create new instance(s). 
-
-This delivery pipeline will queue a build stage when the gitlab repository is pushed to with new changes. A successful build stage in turn will queue the unitest stage. These tests should be defined in the git repository, where examples will be provided. A successful test stage will queue the deploy stage. The deploy configuration should be defined in the git repository, where examples will be provided. The deploy stage will target the services specified in the delivery pipeline form. 
+The third section of the form is a delivery pipeline configuration. Here you will have to provide the identity and connection certificates to execute the installation and instantiation of the chaincode project onto the specified peers per organization for a specified channel.
 
 ![Pipeline Config Image](assets/pipeline_config.png)
 
