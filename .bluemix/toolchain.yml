@@ -56,7 +56,7 @@ services:
           CONNECTION_PROFILE_STRING: '{{form.pipeline.parameters.organization-connection-profile}}'
           SCRIPT_DIR: './scripts/'
           FABRIC_CLI_DIR: './fabric-cli/'
-          CHAINCODE_PATH: './chaincode/'
+          CHAINCODEPATH: './chaincode/'
         execute: true
 
 form:
