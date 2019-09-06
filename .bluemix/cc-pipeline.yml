@@ -16,7 +16,7 @@ stages:
     value: 'https://github.com/abisarvepalli/build-lib/archive/v1.4.tar.gz'
     type: text
   - name: CHAINCODEPATH
-    vale: ${CHAINCODEPATH}
+    value: ${CHAINCODEPATH}
     type: text
   - name: FABRIC_CLI_DIR
     value: ${FABRIC_CLI_DIR}
