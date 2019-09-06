@@ -34,7 +34,7 @@ stages:
       # move chaincode git repo to separate directory
       if [ -n "$CHAINCODEPATH" ]; then
         chaincode_files=`ls -a`
-        mkdir chaincode
+        mkdir $CHAINCODEPATH
         mv $chaincode_files $CHAINCODEPATH
       fi
       
