@@ -22,7 +22,7 @@ stages:
     value: ${FABRIC_CLI_DIR}
     type: text
   - name: FABRIC_CLI_URL
-    value: 'https://github.com/abisarvepalli/build-lib/releases/download/v1.4/fabric-cli.tar'
+    value: 'https://github.com/abisarvepalli/build-lib/releases/download/v1.4/fabric-cli.tgz'
     type: text
   jobs:
   - name: Prepare
