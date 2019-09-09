@@ -101,6 +101,12 @@ stages:
   - name: SCRIPT_DIR
     value: ${SCRIPT_DIR}
     type: text
+  - name: ADMIN_IDENTITY_STRING
+    value: ${ADMIN_IDENTITY_STRING}
+    type: text
+  - name: CONNECTION_PROFILE_STRING
+    value: ${CONNECTION_PROFILE_STRING}
+    type: text
   jobs:
   - name: Test
     type: tester
