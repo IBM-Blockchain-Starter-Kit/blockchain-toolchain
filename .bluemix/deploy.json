@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "messages": {
+        "$i18n": "locales.yml"
+    },
+    "title": {
+        "$ref": "#/messages/deploy.title"
+    },
+    "description": {
+        "$ref": "#/messages/deploy.description"
+    },
+    "longDescription": {
+        "$ref": "#/messages/deploy.longDescription"
+    },
+    "type": "object",
+    "properties": {
+        "organization-admin-identity": {            
+            "description": {
+                "$ref": "#/messages/deploy.organizationAdminIdentityDescription"
+            },
+            "type": "string"
+        },
+        "organization-connection-profile": {
+            "description": {
+                "$ref": "#/messages/deploy.organizationConnectionProfileDescription"
+            },
+            "type": "string"
+        }
+    },
+    "required": [
+        "organization-admin-identity",
+        "organization-connection-profile"
+    ],
+    "form": [
+        {
+            "type": "table",
+            "columnCount": 1,
+            "widths": ["100%"],
+            "items": [
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/deploy.organizationAdminIdentity"
+                    }
+                },
+                {
+                    "type": "string",            
+                    "key": "organization-admin-identity"
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/deploy.organizationConnectionProfile"
+                    }
+                },
+                {
+                    "type": "string",
+                    "key": "organization-connection-profile"
+                }
+            ]
+        }
+    ]
+}

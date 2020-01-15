@@ -1,0 +1,70 @@
+version: '2'
+
+messages:
+  $i18n: locales.yml
+
+template:
+  name:
+    $ref: "#/messages/template.name"
+  description:
+    $ref: "#/messages/template.description"
+  header: '![](toolchain.svg?localize)'
+  icon: icon.svg
+  required:
+    - chaincode-repo
+    - chaincode-build
+  info:
+    git url: >-
+      [https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain)
+    git branch: >-
+      [https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain/tree/chaincode](https://github.com/IBM-Blockchain-Starter-Kit/blockchain-toolchain/tree/chaincode)
+
+toolchain:
+  name: 'Blockchain-{{platform}}-{{timestamp}}-mvp'
+  template:
+    getting_started:
+      $ref: "#/messages/template.gettingStarted"
+
+services:
+  chaincode-repo:
+    service_id: hostedgit
+    parameters:
+      repo_name: '{{toolchain.name}}-cc-repo'
+      repo_url: '{{bootstrapRepo}}'
+      type: clone
+      has_issues: true
+      enable_traceability: true
+
+  chaincode-build:
+    service_id: pipeline
+    parameters:
+      services:
+        - chaincode-repo
+      name: '{{toolchain.name}}-cc-pipeline'
+      ui-pipeline: true
+      configuration:
+        content:
+          $text: cc-pipeline.yml
+        env:
+          PLATFORM: '{{platform}}'
+          CC_REPO: chaincode-repo
+          CC_REPO_DIR: './chaincode-repo/'
+          # BLOCKCHAIN_SERVICE_INSTANCE: '{{form.pipeline.parameters.blockchain-service-instance}}'
+          # REGION_ID: '{{form.pipeline.parameters.deploy-region}}'
+          # ORG_NAME: '{{form.pipeline.parameters.deploy-organization}}'
+          # SPACE_NAME: '{{form.pipeline.parameters.deploy-space}}'
+          ADMIN_IDENTITY_STRING: '{{form.pipeline.parameters.organization-admin-identity}}'
+          CONNECTION_PROFILE_STRING: '{{form.pipeline.parameters.organization-connection-profile}}'
+          SCRIPT_DIR: './scripts/'
+          FABRIC_CLI_DIR: './fabric-cli/'
+        execute: true
+
+form:
+  pipeline:
+      schema:
+        $ref: deploy.json
+      parameters:
+        organization-admin-identity: '{{organization-admin-identity}}'
+        organization-connection-profile: '{{organization-connection-profile}}'
+
+  

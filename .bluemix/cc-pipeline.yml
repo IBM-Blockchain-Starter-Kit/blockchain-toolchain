@@ -1,0 +1,160 @@
+---
+stages:
+
+- name: PREPARE
+  inputs:
+  - type: git
+    branch: master
+    service: ${CC_REPO}
+  triggers:
+  - type: commit
+  properties:
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text
+  # TODO: update BUILD_LIB_URL once build lib finalizes release
+  #   currently using pre-release public link to download build-lib 
+  - name: BUILD_LIB_URL
+    value: 'https://github.com/IBM-Blockchain-Starter-Kit/build-lib/archive/v0.5.4.tar.gz'
+    type: text
+  - name: CC_REPO_DIR
+    value: ${CC_REPO_DIR}
+    type: text
+  - name: FABRIC_CLI_DIR
+    value: ${FABRIC_CLI_DIR}
+    type: text
+  - name: FABRIC_CLI_URL
+    value: 'https://github.com/IBM-Blockchain-Starter-Kit/fabric-cli/archive/v1.4.2.tar.gz'
+    type: text
+  jobs:
+  - name: Prepare
+    type: builder
+    script: |-
+      #!/bin/bash
+      set -ex
+
+      # move chaincode git repo to separate directory
+      if [ -n "$CC_REPO_DIR" ]; then
+        chaincode_files=`ls`
+        mkdir $CC_REPO_DIR
+        mv -f $chaincode_files "$CC_REPO_DIR"
+      fi
+      
+      if [ -n "$BUILD_LIB_URL" ]; then
+        echo "=> Downloading Blockchain Build Libraries..."
+        # download blockchain-build-lib
+        build_lib_dir=$(mktemp -d)
+        mkdir -p "$SCRIPT_DIR"
+
+        (curl -fsSL "$BUILD_LIB_URL") > "$build_lib_dir/build-lib.tgz"
+        tar --keep-old-files -xvzf "$build_lib_dir/build-lib.tgz" -C "$SCRIPT_DIR" --strip-components 2 > /dev/null 2>&1 || true
+
+        # git clone "$BUILD_LIB_URL" "$SCRIPT_DIR" > /dev/null 2>&1 || true
+      fi
+
+      if [ -n "$FABRIC_CLI_URL" ]; then
+        echo "=> Downloading Fabric-CLI..."
+        # download fabric-cli
+        fabric_cli_dir=$(mktemp -d)
+        mkdir -p "$FABRIC_CLI_DIR"
+
+        (curl -fsSL "$FABRIC_CLI_URL") > "$fabric_cli_dir/fabric-cli.tgz"
+        tar --keep-old-files -xvzf "$fabric_cli_dir/fabric-cli.tgz" -C "$FABRIC_CLI_DIR" --strip-components 1 > /dev/null 2>&1 || true
+
+        # git clone "$FABRIC_CLI_URL" "$FABRIC_CLI_DIR" > /dev/null 2>&1 || true
+      fi
+
+- name: BUILD
+  inputs:
+  - type: job
+    stage: PREPARE
+    job: Prepare
+  triggers:
+  - type: stage
+  properties:
+  - name: PLATFORM
+    value: ${PLATFORM}
+    type: text
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text
+  - name: FABRIC_CLI_DIR
+    value: ${FABRIC_CLI_DIR}
+    type: text
+  jobs:
+  - name: Build Chaincode
+    type: builder
+    script: |-
+      #!/bin/bash -x
+      # script defined in chaincode project
+      source "${SCRIPT_DIR}router.sh" build "${PLATFORM}"
+
+- name: TEST
+  inputs:
+  - type: job
+    stage: BUILD
+    job: Build Chaincode
+  triggers:
+  - type: stage
+  properties:
+  - name: PLATFORM
+    value: ${PLATFORM}
+    type: text
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text
+  - name: ADMIN_IDENTITY_STRING
+    value: ${ADMIN_IDENTITY_STRING}
+    type: text
+  - name: CONNECTION_PROFILE_STRING
+    value: ${CONNECTION_PROFILE_STRING}
+    type: text
+  jobs:
+  - name: Test
+    type: tester
+    script: |-
+      #!/bin/bash -x
+      source "${SCRIPT_DIR}/router.sh" test "${PLATFORM}"
+
+- name: DEPLOY
+  inputs:
+  - type: job
+    stage: BUILD
+    job: Build Chaincode
+  triggers:
+  - type: stage
+  properties:
+  - name: PLATFORM
+    value: ${PLATFORM}
+    type: text
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
+    type: text 
+  - name: FABRIC_CLI_DIR
+    value: ${FABRIC_CLI_DIR}
+    type: text
+  - name: BLOCKCHAIN_SERVICE_INSTANCE
+    value: ${BLOCKCHAIN_SERVICE_INSTANCE}
+    type: text 
+  - name: CLOUDANT_SERVICE_INSTANCE
+    value: ${CLOUDANT_SERVICE_INSTANCE}
+    type: text 
+  - name: REGION_ID
+    value: ${REGION_ID}
+    type: text 
+  - name: ADMIN_IDENTITY_STRING
+    value: ${ADMIN_IDENTITY_STRING}
+    type: text
+  - name: CONNECTION_PROFILE_STRING
+    value: ${CONNECTION_PROFILE_STRING}
+    type: text
+  jobs:
+  - name: Deploy Chaincode
+    type: builder
+    # target:
+    #  region_id: ${REGION_ID}
+    #  organization: ${ORG_NAME}
+    #  space: ${SPACE_NAME}
+    script: |-
+      #!/bin/bash -x
+      source "${SCRIPT_DIR}/router.sh" deploy "${PLATFORM}"
