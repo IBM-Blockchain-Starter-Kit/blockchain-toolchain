@@ -1,4 +1,4 @@
-# Chaincode Toolchain Automation
+# Chaincode DevOps Pipeline
 
 This repository allows you to create a simple CI/CD pipeline for your Hyperledger Fabric chaincode using the Continuos Delivery Service on the IBM Cloud.  The pipeline supports building, unit testing and deploying smart contracts directly to the IBM Blockchain Platform.  Currently the pipeline can work with chaincode written in JavaScript, TypeScript and Go.  The following diagram provides an overview of the type of DevOps environment that can be created using this tool.
 
