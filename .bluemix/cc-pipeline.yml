@@ -15,7 +15,7 @@ stages:
   # TODO: update BUILD_LIB_URL once build lib finalizes release
   #   currently using pre-release public link to download build-lib 
   - name: BUILD_LIB_URL
-    value: 'https://github.com/IBM-Blockchain-Starter-Kit/build-lib/archive/v0.5.4.tar.gz'
+    value: 'https://github.com/IBM-Blockchain-Starter-Kit/build-lib/archive/v0.5.5.tar.gz'
     type: text
   - name: CC_REPO_DIR
     value: ${CC_REPO_DIR}
